@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 13 Apr 2019 14:52:37 +0000.
+ * Date: Sat, 13 Apr 2019 15:40:11 +0000.
  */
 
 namespace App\Models;
@@ -17,6 +17,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property int $status
  * @property int $districts_id
  * @property int $users_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
  * 
  * @property \App\Models\District $district
  * @property \App\Models\User $user
@@ -27,7 +30,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Volunteer extends Eloquent
 {
-	public $timestamps = false;
+	use \Illuminate\Database\Eloquent\SoftDeletes;
 
 	protected $casts = [
 		'status' => 'int',
@@ -55,12 +58,14 @@ class Volunteer extends Eloquent
 	public function assets()
 	{
 		return $this->belongsToMany(\App\Models\Asset::class, 'volunteers_assets', 'volunteers_id', 'assets_id')
-					->withPivot('id');
+					->withPivot('id', 'deleted_at')
+					->withTimestamps();
 	}
 
 	public function categories()
 	{
 		return $this->belongsToMany(\App\Models\Category::class, 'volunteers_category', 'volunteers_id')
-					->withPivot('id');
+					->withPivot('id', 'deleted_at')
+					->withTimestamps();
 	}
 }

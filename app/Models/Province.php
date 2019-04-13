@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 13 Apr 2019 14:52:37 +0000.
+ * Date: Sat, 13 Apr 2019 15:40:11 +0000.
  */
 
 namespace App\Models;
@@ -16,6 +16,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $name
  * @property string $latitude
  * @property string $longitude
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
  * 
  * @property \Illuminate\Database\Eloquent\Collection $districts
  *
@@ -23,7 +26,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class Province extends Eloquent
 {
-	public $timestamps = false;
+	use \Illuminate\Database\Eloquent\SoftDeletes;
 
 	protected $fillable = [
 		'name',

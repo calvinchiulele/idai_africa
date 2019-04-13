@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 13 Apr 2019 14:52:37 +0000.
+ * Date: Sat, 13 Apr 2019 15:40:11 +0000.
  */
 
 namespace App\Models;
@@ -17,6 +17,9 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $latitude
  * @property string $longitude
  * @property int $provinces_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
  * 
  * @property \App\Models\Province $province
  * @property \Illuminate\Database\Eloquent\Collection $volunteers
@@ -25,7 +28,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  */
 class District extends Eloquent
 {
-	public $timestamps = false;
+	use \Illuminate\Database\Eloquent\SoftDeletes;
 
 	protected $casts = [
 		'provinces_id' => 'int'
