@@ -47,6 +47,23 @@
             background-color: #f5f5f5;
         }
 
+
+        .actividade{
+            padding: 15px;
+            /*border: 1px solid #6cb2eb;*/
+            border: 1px solid #3768CD;
+            border-radius: 10px;
+            font-size: 10pt;
+            background-color: white;
+            color: #3768CD;
+            margin-left: 10px ;
+        }
+
+        .actividade:hover{
+            background-color: #3768CD;
+            color: white;
+        }
+
     </style>
 
 @endsection
@@ -54,8 +71,8 @@
 @section('content')
 
     <div class="mt-100 container-fluid">
-        <div class="row" style="position: relative">
-            <div class="col-4">
+        <div class="row">
+            <div class="col-4" style="position: fixed;">
                 <div class="card card-5">
 
                     <div class="card-heading" style="background-color: #3768CD">
@@ -65,7 +82,7 @@
                     <div class="card-body">
 
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-12">
                                 <h3 style="font-size: 16pt">Províncias</h3>
                                 <div class="d-flex flex-column mt-3">
                                     <span class="item" style="background-color: #3768CD; color: white">Inhambane</span>
@@ -75,7 +92,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-12">
                                 <h3 style="font-size: 16pt">Recursos</h3>
                                 <div class="d-flex flex-column mt-3">
                                     <span class="item">Pás</span>
@@ -86,19 +103,34 @@
                             </div>
                         </div>
 
+                        <div class="w-100 text-center">
+                            <button class="btn btn-info  mt-50">Limpar Filtros</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="col-8">
 
-                <div class="row">
-                    @foreach([1,2,2,2,2,22,2,2] as $teste)
-                        <div class="col-md-4 mt-10">
+            </div>
+
+        <div class="col-4"></div>
+
+            <div class="col-8 mt-3" style="position: absolute; right: 0">
+                    <div class="d-inline-block">
+                        <span class="actividade">Actividad 1</span>
+                        <span class="actividade">Actividad 1</span>
+                        <span class="actividade">Actividad 1</span>
+                        <span class="actividade">Actividad 1</span>
+                        <span class="actividade">Actividad 1</span>
+                    </div>
+
+                <div class="row mt-3">
+                    @foreach([1,2,2,2,2,22,2,1,1,1,1,1,1,1,1,1,1,1,2] as $teste)
+                        <div class="col-lg-4 col-sm-6 mt-10">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    {{--<p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_04.jpg" alt="card image"></p>--}}
                                     <h4 class="card-title mt-3" style="color: #3768CD">Herquiloide Hele</h4>
-                                    <p class="card-text">Maxixe, Imhambane</p>
+                                    <p class="card-text"> <i class="fa fa-plus"></i>Maxixe, Imhambane</p>
                                     <p class="card-text">+258 847005571</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
