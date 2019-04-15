@@ -1,6 +1,5 @@
 <?php
 
-use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -15,12 +14,48 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(\App\Models\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'phonenumber' => $faker->phoneNumber,
     ];
+});
+
+
+$factory->define(\App\Models\Volunteer::class, function (Faker $faker) {
+    return [
+        'status' => true,
+        'districts_id' => $faker->numberBetween(1, \App\Models\District::all()->count()),
+        'users_id' => $faker->numberBetween(1, 100)
+    ];
+});
+
+
+$factory->define(\App\Models\Organization::class, function (Faker $faker) {
+    return [
+        'users_id' => $faker->numberBetween(101, \App\User::all()->count())
+    ];
+});
+
+$factory->define(\App\Models\Province::class, function (Faker $faker) {
+
+    $provincias = \App\Http\Controllers\DataController::getProvinvias();
+    $provincia = $faker->unique()->randomElement($provincias);
+    return [
+        'id' => $provincia['id'],
+        'name' => $provincia['name']
+    ];
+});
+
+$distritos = \App\Http\Controllers\DataController::getDistritos();
+
+$factory->define(\App\Models\District::class, function (Faker $faker) use ($distritos){
+
+    $distrito = $distritos->pop();
+
+    return [
+        'name' => $distrito['name'],
+        'provinces_id' => $distrito['in_place']['id']
+    ];
+
 });

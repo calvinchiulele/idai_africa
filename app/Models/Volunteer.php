@@ -39,7 +39,6 @@ class Volunteer extends Eloquent
 	];
 
 	protected $fillable = [
-		'phonenumber',
 		'status',
 		'districts_id',
 		'users_id'

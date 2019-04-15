@@ -15,7 +15,6 @@ class CreateVolunteersTable extends Migration {
 		Schema::create('volunteers', function(Blueprint $table)
 		{
 			$table->integer('id', true);
-			$table->string('phonenumber', 9)->nullable();
 			$table->boolean('status')->nullable();
 			$table->integer('districts_id')->index('fk_volunteers_districts1_idx');
 			$table->integer('users_id')->index('fk_volunteers_users1_idx');

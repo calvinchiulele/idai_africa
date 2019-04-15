@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/volunteers-profile', function () {
-    return view('profile');
+Route::get('/profile', function () {
+    return view('volunteers. profile');
 });
 
 Route::get('/volunteers-list', function () {

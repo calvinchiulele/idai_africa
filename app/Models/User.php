@@ -35,11 +35,11 @@ class User extends Eloquent
 
 	public function organizations()
 	{
-		return $this->hasMany(\App\Models\Organization::class, 'users_id');
+		return $this->hasOne(\App\Models\Organization::class, 'users_id');
 	}
 
 	public function volunteers()
 	{
-		return $this->hasMany(\App\Models\Volunteer::class, 'users_id');
+		return $this->hasOne(\App\Models\Volunteer::class, 'users_id');
 	}
 }

@@ -117,11 +117,9 @@
 
             <div class="col-8 mt-3" style="position: absolute; right: 0">
                     <div class="d-inline-block">
-                        <span class="actividade">Actividad 1</span>
-                        <span class="actividade">Actividad 1</span>
-                        <span class="actividade">Actividad 1</span>
-                        <span class="actividade">Actividad 1</span>
-                        <span class="actividade">Actividad 1</span>
+                        @foreach([1,2,2,2,2,2] as $key => $teste)
+                            <span class="actividade">Actividade {{$key+1}}</span>
+                        @endforeach
                     </div>
 
                 <div class="row mt-3">
