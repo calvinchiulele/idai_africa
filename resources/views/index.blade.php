@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
 
+@section('additional-styles')
+
+    <link rel="stylesheet" href="{{'css/register/main.css'}}">
+
+@endsection
 
 @section('content')
-
 
     <section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="{{asset('img/header-bg2.jpg')}}">
         <div class="overlay-bg overlay"></div>

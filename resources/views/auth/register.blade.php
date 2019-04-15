@@ -12,7 +12,7 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading" style="background-color: #3768CD">
-                    <h2 class="title">Registration</h2>
+                    <h2 class="title">Crie uma Conta</h2>
                 </div>
                 <div class="card-body">
                     <form method="POST">
@@ -56,7 +56,7 @@
                         </div>
 
                         <div>
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Register</button>
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submeter</button>
                         </div>
                     </form>
                 </div>

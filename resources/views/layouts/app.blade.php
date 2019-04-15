@@ -57,7 +57,7 @@
                             <a class="dropdown-item" href="/login">Entrar</a>
                         </div>
                     </li>
-                    <li><a href="/voluntarios">PESSOAS</a></li>
+                    <li><a href="/volunteers-list">PESSOAS</a></li>
                 </ul>
             </div>
         </div>

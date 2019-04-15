@@ -15,8 +15,12 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/criar-conta', function () {
-    return view('register');
+Route::get('/volunteers-profile', function () {
+    return view('profile');
+});
+
+Route::get('/volunteers-list', function () {
+    return view('volunteers.list');
 });
 
 Auth::routes();
