@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/profile', function () {
-    return view('volunteers. profile');
+    return view('volunteers.profile');
 });
 
 Route::get('/volunteers-list', function () {
