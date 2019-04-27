@@ -16,11 +16,19 @@ Route::get('/', function () {
 });
 
 Route::get('/profile', function () {
-    return view('volunteers. profile');
+    return view('volunteers.profile');
 });
 
 Route::get('/volunteers-list', function () {
     return view('volunteers.list');
+});
+
+Route::get('/registration-step1', function () {
+    return view('volunteers.register-step-one');
+});
+
+Route::get('/registration-step2', function () {
+    return view('volunteers.register-step-two');
 });
 
 Auth::routes();
