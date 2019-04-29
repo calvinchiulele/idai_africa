@@ -88,8 +88,8 @@
                                         @if($i < 4)
                                             <span class="item">
 
-                                                @if(isset($asset) && $asset && is_numeric($asset))
-                                                    <a href="/volunteers-list/{{ $district->id }}/{{ $asset }}">{{ $district->name }}</a>
+                                                @if(isset($fAsset) && $fAsset)
+                                                    <a href="/volunteers-list/{{ $district->id }}/{{ $fAsset }}">{{ $district->name }}</a>
                                                 @else
                                                     <a href="/volunteers-list/{{ $district->id }}">{{ $district->name }}</a>
                                                 @endif
@@ -108,19 +108,21 @@
                             <div class="col-lg-6 col-sm-12">
                                 <h3 style="font-size: 16pt">Recursos</h3>
                                 <div class="d-flex flex-column mt-3">
-                                    <span class="item">Pás</span>
-                                    <span class="item">Enchadas</span>
-                                    <span class="item">Carro</span>
-                                    <span class="item">
-                                        {{--<a href="/volunteers-list/{district?}/{asset?}">{{ $asset->name }}</a>--}}
-                                    </span>
-                                    <span class="item">...</span>
+                                    @foreach($assets as $asset)
+                                        <span class="item">
+                                            @if(isset($fDistrict) && $fDistrict)
+                                                <a href="/volunteers-list/{{ $fDistrict }}/{{ $asset->id }}">{{ $asset->name }}</a>
+                                            @else
+                                                <a href="/volunteers-list/{{ $asset->id }}">{{ $asset->name }}</a>
+                                            @endif
+                                        </span>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
 
                         <div class="w-100 text-center">
-                            <button class="btn btn-info  mt-50"><a href="/volunteers-list">Limpar Filtros</a></button>
+                            <button class="btn  mt-50"><a href="/volunteers-list">Limpar Filtros</a></button>
                         </div>
 
                     </div>
