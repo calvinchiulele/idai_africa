@@ -9,13 +9,14 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="{{'js/firebase-init.js'}}"></script>
     <script src="{{'js/firebase-phone-auth.js'}}"></script>
     <script>
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 // User is signed in
-                // Redirect him to his profile
-                window.location.href = '/profile'
+                // Redirect him to registration
+                window.location.href = '/registration-step1'
             }
         });
     </script>

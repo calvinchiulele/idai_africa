@@ -40,6 +40,26 @@
             <a class="navbar-brand" href="/">
                 <h1>IDAI Africa</h1>
             </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li><a href="#">INSTITUIÇAO</a></li>
+                    <!-- Dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            VOLUNTÁRIO
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/register">Criar conta</a>
+                            <a class="dropdown-item" href="/login">Entrar</a>
+                        </div>
+                    </li>
+                    <li><a href="/volunteers-list">PESSOAS</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 </header>
