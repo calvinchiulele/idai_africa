@@ -38,7 +38,7 @@ class User extends Eloquent
 		return $this->hasOne(\App\Models\Organization::class, 'users_id');
 	}
 
-	public function volunteers()
+	public function volunteer()
 	{
 		return $this->hasOne(\App\Models\Volunteer::class, 'users_id');
 	}

@@ -15,21 +15,19 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/profile', function () {
-    return view('volunteers.profile');
-});
+Route::get('/profile', 'UserController@profile')->name('profile');
 
 Route::get('/volunteers-list', function () {
     return view('volunteers.list');
 });
 
-Route::get('/registration-step1', function () {
-    return view('volunteers.register-step-one');
-});
+Route::get('/registration-step1', 'UserController@showFirstStep')->name('registration-step1');
 
-Route::get('/registration-step2', function () {
-    return view('volunteers.register-step-two');
-});
+Route::post('/savestep1', 'UserController@saveFirstStep')->name('savestep1');
+
+Route::get('/registration-step2', 'UserController@showSecondStep')->name('registration-step2');
+
+Route::post('/savestep2', 'UserController@saveSecondStep')->name('savestep2');
 
 Auth::routes();
 

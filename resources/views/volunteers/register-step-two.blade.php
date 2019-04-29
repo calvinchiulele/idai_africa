@@ -43,11 +43,29 @@
             color: white;
         }
 
+        .is-active {
+            background-color: #3768CD;
+            color: white;
+        }
+
         body{
             background-color: #f5f5f5;
         }
 
     </style>
+
+    <script>
+        function checkHiddenBox(index, name) {
+            var checkboxes = document.getElementsByName(name);
+            var isChecked = checkboxes[index].checked;
+            if (isChecked) {
+                document.getElementById(name.substring(0, name.length - 2) + index).classList.remove('is-active');
+            } else {
+                document.getElementById(name.substring(0, name.length - 2) + index).classList.add('is-active');
+            }
+            document.getElementsByName(name)[index].checked = !isChecked;
+        }
+    </script>
 
 @endsection
 
@@ -60,32 +78,40 @@
                 </div>
 
                 <div class="card-body">
+                    <form action="/savestep2" method="post">
+                        @csrf
 
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-12">
-                            <h3 style="font-size: 16pt">Actividades que posso desempenhar</h3>
-                            <div class="d-flex flex-column mt-3">
-                                @foreach([1,2,2,2] as $key => $teste)
-                                    <span class="item">Actividade {{$key+1}}</span>
-                                @endforeach
+                        <input type="hidden" name="volunteer_id" value="{{$volunteerid}}">
+
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                <h3 style="font-size: 16pt">Actividades que posso desempenhar</h3>
+                                <div class="d-flex flex-column mt-3">
+                                    @for ($i = 0; $i < count($categories); $i++)
+                                        <span class="item" id="selected_categories{{$i}}" onclick="checkHiddenBox({{$i}}, 'selected_categories[]')">{{$categories[$i]->name}}</span>
+                                        <input type="checkbox" name="selected_categories[]" value="{{$categories[$i]->id}}" hidden>
+                                    @endfor
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-12">
+                                <h3 style="font-size: 16pt">Recursos que posso disponibilizar</h3>
+                                <div class="d-flex flex-column mt-3">
+                                    @for ($i = 0; $i < count($assets); $i++)
+                                        <span class="item" id="selected_assets{{$i}}" onclick="checkHiddenBox({{$i}}, 'selected_assets[]')" class="@if(in_array($assets[$i]->id, $volunteer_assets)) {{'is-active'}} @endif">
+                                            {{$assets[$i]->name}}
+                                        </span>
+                                        <input type="checkbox" name="selected_assets[]" value="{{$assets[$i]->id}}" hidden
+                                                @if(in_array($assets[$i]->id, $volunteer_assets)) {{' checked'}} @endif>
+                                    @endfor
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-6 col-sm-12">
-                            <h3 style="font-size: 16pt">Recursos que posso disponibilizar</h3>
-                            <div class="d-flex flex-column mt-3">
-                                <span class="item">Pás</span>
-                                <span class="item">Enchadas</span>
-                                <span class="item">Carro</span>
-                                <span class="item">...</span>
-                            </div>
+                        <div class="w-100 text-center">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Guardar</button>
                         </div>
-                    </div>
-
-                    <div class="w-100 text-center">
-                        <button class="btn btn--radius-2 btn--blue">Guardar</button>
-                    </div>
-
+                    </form>
                 </div>
             </div>
         </div>
