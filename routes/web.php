@@ -19,9 +19,9 @@ Route::get('/profile', function () {
     return view('volunteers. profile');
 });
 
-Route::get('/volunteers-list', function () {
-    return view('volunteers.list');
-});
+Route::get('/volunteers-list', 'VolunteerController@index')->name('volunteers.list');
+Route::get('/volunteers-list/{district?}/{asset?}', 'VolunteerController@filterVolunteers')->name('volunteers.filter');
+
 
 Auth::routes();
 

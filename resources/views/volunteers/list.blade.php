@@ -63,7 +63,6 @@
             background-color: #3768CD;
             color: white;
         }
-
     </style>
 
 @endsection
@@ -83,12 +82,26 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-sm-12">
-                                <h3 style="font-size: 16pt">Províncias</h3>
+                                <h3 style="font-size: 16pt">Distritos</h3>
                                 <div class="d-flex flex-column mt-3">
-                                    <span class="item" style="background-color: #3768CD; color: white">Inhambane</span>
-                                    <span class="item">Maputo</span>
-                                    <span class="item">Gaza</span>
-                                    <span class="item">Zambézia</span>
+                                    @foreach($districts as $i => $district)
+                                        @if($i < 4)
+                                            <span class="item">
+
+                                                @if(isset($asset) && $asset && is_numeric($asset))
+                                                    <a href="/volunteers-list/{{ $district->id }}/{{ $asset }}">{{ $district->name }}</a>
+                                                @else
+                                                    <a href="/volunteers-list/{{ $district->id }}">{{ $district->name }}</a>
+                                                @endif
+                                            </span>
+                                        @endif
+                                    @endforeach
+                                    @if(count($districts) > 4)
+                                        <span class="item active">
+                                            Total {{ count($districts) }}
+                                        </span>
+                                    @endif
+
                                 </div>
                             </div>
 
@@ -98,13 +111,16 @@
                                     <span class="item">Pás</span>
                                     <span class="item">Enchadas</span>
                                     <span class="item">Carro</span>
+                                    <span class="item">
+                                        {{--<a href="/volunteers-list/{district?}/{asset?}">{{ $asset->name }}</a>--}}
+                                    </span>
                                     <span class="item">...</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="w-100 text-center">
-                            <button class="btn btn-info  mt-50">Limpar Filtros</button>
+                            <button class="btn btn-info  mt-50"><a href="/volunteers-list">Limpar Filtros</a></button>
                         </div>
 
                     </div>
@@ -123,13 +139,17 @@
                     </div>
 
                 <div class="row mt-3">
-                    @foreach([1,2,2,2,2,22,2,1,1,1,1,1,1,1,1,1,1,1,2] as $teste)
+                    @foreach($volunteers as $volunteer)
                         <div class="col-lg-4 col-sm-6 mt-10">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <h4 class="card-title mt-3" style="color: #3768CD">Herquiloide Hele</h4>
-                                    <p class="card-text"> <i class="fa fa-plus"></i>Maxixe, Imhambane</p>
-                                    <p class="card-text">+258 847005571</p>
+                                    {{--<a href="/"></a>--}}
+                                    <h4 class="card-title mt-3" style="color: #3768CD">{{ $volunteer->user->name }}</h4>
+                                    <p class="card-text"> <i class="fa fa-plus"></i>
+                                        {{ $volunteer->district->name }},
+                                        {{ $volunteer->district->province->name }}
+                                    </p>
+                                    <p class="card-text">{{ $volunteer->user->phonenumber }}</p>
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
