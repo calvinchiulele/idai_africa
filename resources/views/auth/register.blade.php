@@ -62,7 +62,7 @@
                             <div class="name">Password</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="password" name="password" placeholder="re-type password">
+                                    <input class="input--style-5" type="password" name="password_verify" placeholder="re-type password">
                                 </div>
                             </div>
                         </div>
