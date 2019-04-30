@@ -17,6 +17,8 @@
                 <div class="card-body">
                     <form method="POST">
 
+                        @csrf()
+
                         <div class="form-row">
                             <div class="name">Nome</div>
                             <div class="value">
