@@ -17,11 +17,23 @@
                 <div class="card-body">
                     <form method="POST">
 
+                        @csrf()
+
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="form-row">
                             <div class="name">Nome</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="nome" placeholder="Joao Carlos">
+                                    <input class="input--style-5" type="text" name="name" placeholder="Joao Carlos">
                                 </div>
                             </div>
                         </div>
@@ -30,7 +42,7 @@
                             <div class="name">Cell</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="phone" name="phone" placeholder="phone">
+                                    <input class="input--style-5" type="text" name="phonenumber" placeholder="phone">
                                 </div>
                             </div>
                         </div>
@@ -50,7 +62,7 @@
                             <div class="name">Password</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="password" name="password" placeholder="re-type password">
+                                    <input class="input--style-5" type="password" name="password_verify" placeholder="re-type password">
                                 </div>
                             </div>
                         </div>
