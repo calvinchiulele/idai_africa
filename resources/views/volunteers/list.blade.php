@@ -95,7 +95,7 @@
                                     @endforeach
                                     @if(count($districts) > 4)
                                         <span class="item active">
-                                            Total {{ count($districts) }}
+                                            Total {{ count($districts) }} distritos
                                         </span>
                                     @endif
 
