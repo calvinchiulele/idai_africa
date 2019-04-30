@@ -16,8 +16,8 @@ class CreateVolunteersCategoryTable extends Migration {
 		{
 			$table->integer('volunteers_id')->index('fk_volunteers_has_category_volunteers1_idx');
 			$table->integer('category_id')->index('fk_volunteers_has_category_category1_idx');
-			$table->string('id', 45)->primary();
-			$table->timestamps();
+            $table->integer('id', true);
+            $table->timestamps();
 			$table->softDeletes();
 		});
 	}
