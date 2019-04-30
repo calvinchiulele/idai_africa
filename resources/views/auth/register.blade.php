@@ -19,6 +19,16 @@
 
                         @csrf()
 
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="form-row">
                             <div class="name">Nome</div>
                             <div class="value">
