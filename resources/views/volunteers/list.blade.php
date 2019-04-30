@@ -87,12 +87,9 @@
                                     @foreach($districts as $i => $district)
                                         @if($i < 4)
                                             <span class="item">
-
-                                                @if(isset($fAsset) && $fAsset)
-                                                    <a href="/volunteers-list/{{ $district->id }}/{{ $fAsset }}">{{ $district->name }}</a>
-                                                @else
-                                                    <a href="/volunteers-list/{{ $district->id }}">{{ $district->name }}</a>
-                                                @endif
+                                                <a href="/volunteers-list/{{ $district->id }}/{{ isset($fAsset) ? $fAsset : '-1' }}/{{ isset($fCategory) ? $fCategory : '-1' }}">
+                                                    {{ $district->name }}
+                                                </a>
                                             </span>
                                         @endif
                                     @endforeach
@@ -110,11 +107,9 @@
                                 <div class="d-flex flex-column mt-3">
                                     @foreach($assets as $asset)
                                         <span class="item">
-                                            @if(isset($fDistrict) && $fDistrict)
-                                                <a href="/volunteers-list/{{ $fDistrict }}/{{ $asset->id }}">{{ $asset->name }}</a>
-                                            @else
-                                                <a href="/volunteers-list/{{ $asset->id }}">{{ $asset->name }}</a>
-                                            @endif
+                                            <a href="/volunteers-list/{{ isset($fDistrict) ? $fDistrict : '-1' }}/{{ $asset->id }}/{{ isset($fCategory) ? $fCategory : '-1' }}">
+                                                {{ $asset->name }}
+                                            </a>
                                         </span>
                                     @endforeach
                                 </div>
@@ -122,6 +117,11 @@
                         </div>
 
                         <div class="w-100 text-center">
+                            @if(isset($fDistrict) || isset($fAsset) || isset($fCategory))
+                                <span>
+                                    {{ count($volunteers) }} voluntários encontrados
+                                </span>
+                            @endif
                             <button class="btn  mt-50"><a href="/volunteers-list">Limpar Filtros</a></button>
                         </div>
 
@@ -135,8 +135,12 @@
 
             <div class="col-8 mt-3" style="position: absolute; right: 0">
                     <div class="d-inline-block">
-                        @foreach([1,2,2,2,2,2] as $key => $teste)
-                            <span class="actividade">Actividade {{$key+1}}</span>
+                        @foreach($categories as $key => $category)
+                            <span class="actividade">
+                                <a href="/volunteers-list/{{ isset($fDistrict) ? $fDistrict : '-1' }}/{{ isset($fAsset) ? $fAsset : '-1' }}/{{ $category->id }}">
+                                    {{ $category->name }}
+                                </a>
+                            </span>
                         @endforeach
                     </div>
 

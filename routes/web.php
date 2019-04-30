@@ -20,7 +20,7 @@ Route::get('/profile', function () {
 });
 
 Route::get('/volunteers-list', 'VolunteerController@index')->name('volunteers.list');
-Route::get('/volunteers-list/{district?}/{asset?}', 'VolunteerController@filterVolunteers')->name('volunteers.filter');
+Route::get('/volunteers-list/{district}/{asset}/{category}', 'VolunteerController@filterVolunteers')->name('volunteers.filter');
 
 
 Auth::routes();
