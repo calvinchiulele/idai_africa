@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration {
 			$table->integer('id', true);
 			$table->string('name', 75)->nullable();
 			$table->string('phone', 45)->nullable();
+			$table->string('password', 255)->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});
