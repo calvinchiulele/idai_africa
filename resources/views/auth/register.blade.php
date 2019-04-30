@@ -33,7 +33,7 @@
                             <div class="name">Nome</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="nome" placeholder="Joao Carlos">
+                                    <input class="input--style-5" type="text" name="name" placeholder="Joao Carlos">
                                 </div>
                             </div>
                         </div>
