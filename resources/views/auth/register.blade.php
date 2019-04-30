@@ -42,7 +42,7 @@
                             <div class="name">Cell</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="phone" name="phone" placeholder="phone">
+                                    <input class="input--style-5" type="text" name="phone" placeholder="phone">
                                 </div>
                             </div>
                         </div>
