@@ -88,8 +88,8 @@
                                 <h3 style="font-size: 16pt">Actividades que posso desempenhar</h3>
                                 <div class="d-flex flex-column mt-3">
                                     @for ($i = 0; $i < count($categories); $i++)
-                                        <span class="item" id="selected_categories{{$i}}" onclick="checkHiddenBox({{$i}}, 'selected_categories[]')">{{$categories[$i]->name}}</span>
-                                        <input type="checkbox" name="selected_categories[]" value="{{$categories[$i]->id}}" hidden>
+                                        <span class="item @if(in_array($categories[$i]->id, $volunteer_categories)){{'is-active'}}@endif" id="selected_categories{{$i}}" onclick="checkHiddenBox({{$i}}, 'selected_categories[]')">{{$categories[$i]->name}}</span>
+                                        <input type="checkbox" name="selected_categories[]" value="{{$categories[$i]->id}}" hidden @if(in_array($categories[$i]->id, $volunteer_categories)) {{' checked'}} @endif>
                                     @endfor
                                 </div>
                             </div>
@@ -98,11 +98,10 @@
                                 <h3 style="font-size: 16pt">Recursos que posso disponibilizar</h3>
                                 <div class="d-flex flex-column mt-3">
                                     @for ($i = 0; $i < count($assets); $i++)
-                                        <span class="item" id="selected_assets{{$i}}" onclick="checkHiddenBox({{$i}}, 'selected_assets[]')" class="@if(in_array($assets[$i]->id, $volunteer_assets)) {{'is-active'}} @endif">
+                                        <span class="item @if(in_array($assets[$i]->id, $volunteer_assets)){{'is-active'}}@endif" id="selected_assets{{$i}}" onclick="checkHiddenBox({{$i}}, 'selected_assets[]')">
                                             {{$assets[$i]->name}}
                                         </span>
-                                        <input type="checkbox" name="selected_assets[]" value="{{$assets[$i]->id}}" hidden
-                                                @if(in_array($assets[$i]->id, $volunteer_assets)) {{' checked'}} @endif>
+                                        <input type="checkbox" name="selected_assets[]" value="{{$assets[$i]->id}}" hidden @if(in_array($assets[$i]->id, $volunteer_assets)) {{' checked'}} @endif>
                                     @endfor
                                 </div>
                             </div>

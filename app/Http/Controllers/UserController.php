@@ -29,8 +29,10 @@ class UserController extends Controller
         $categories = Category::all();
         $assets = Asset::all();
 
-        $selected_categories = VolunteersCategory::where('volunteers_id', $volunteerid)->pluck('id')->toArray();
-        $selected_assets = VolunteersAsset::where('volunteers_id', $volunteerid)->pluck('id')->toArray();
+        $volunteer = Volunteer::find($volunteerid);
+
+        $selected_categories = $volunteer->categories->pluck('id')->toArray();
+        $selected_assets = $volunteer->assets->pluck('id')->toArray();
 
         return view('volunteers.register-step-two')
             ->with('volunteerid', $volunteerid)
