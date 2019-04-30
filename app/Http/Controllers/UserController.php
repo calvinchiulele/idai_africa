@@ -113,27 +113,32 @@ class UserController extends Controller
                             ->where('volunteers_id', $volunteer_id)->first();
                         if ($category != null) {
                             // It exists, let's delete it
-                            $category->delete();
+                            // TODO: Use soft delete instead.
+                            // Hard delete have been used here because
+                            // Categories soft deleted were still being shown.
+                            $category->forceDelete();
                         }
                     }
                 }
-            } else {
-                foreach ($categories as $category) {
-                    // No categories where selected
-                    // Let's delete them all
-                    $category = VolunteersCategory::where('category_id', $category->id)
-                        ->where('volunteers_id', $volunteer_id)
-                        ->where('deleted_at', null)->first();
-                    if ($category != null) {
-                        // It exists, let's delete it
-                        $category->delete();
-                    }
+            }
+        } else {
+            foreach ($categories as $category) {
+                // No categories where selected
+                // Let's delete them all
+                $categoryToDelete = VolunteersCategory::where('category_id', $category->id)
+                    ->where('volunteers_id', $volunteer_id)
+                    ->first();
+                if ($categoryToDelete != null) {
+                    // It exists, let's delete it
+                    // TODO: Use soft delete instead.
+                    // Hard delete have been used here because
+                    // Categories soft deleted were still being shown.
+                    $categoryToDelete->forceDelete();
                 }
             }
         }
 
 
-        // TODO: Handle the case where the user selects nothing
         if (is_array($selected_assets)) {
             if (count($selected_assets) > 0) {
                 foreach ($assets as $asset) {
@@ -155,19 +160,37 @@ class UserController extends Controller
                             ->where('volunteers_id', $volunteer_id)->first();
                         if ($asset != null) {
                             // It exists, let's delete it
-                            $asset->delete();
+                            // TODO: Use soft delete instead.
+                            // Hard delete have been used here because
+                            // Assets soft deleted were still being shown.
+                            $asset->forceDelete();
                         }
                     }
                 }
             }
+        } else {
+            foreach ($assets as $asset) {
+                // No categories where selected
+                // Let's delete them all
+                $assetToDelete = VolunteersAsset::where('assets_id', $asset->id)
+                    ->where('volunteers_id', $volunteer_id)
+                    ->first();
+                if ($assetToDelete != null) {
+                    // It exists, let's delete it
+                    // TODO: Use soft delete instead.
+                    // Hard delete have been used here because
+                    // Assets soft deleted were still being shown.
+                    $assetToDelete->forceDelete();
+                }
+            }
         }
+
         return redirect()->guest(route('profile', ['volunteer_id' => $volunteer_id]));
     }
 
     public function profile(Request $request) {
         $volunteer_id = $request->input('volunteer_id');
         $volunteer = Volunteer::find($volunteer_id);
-        // TODO: Categories and Assets soft deleted are still being shown.
         if (!is_null($volunteer)) {
             return view('volunteers.profile')
                 ->with('volunteer', $volunteer);
