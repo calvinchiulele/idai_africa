@@ -8,9 +8,17 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
     <script src="{{'js/firebase-init.js'}}"></script>
     <script>
+        function redirectToLoginPage() {
+            window.location.href = '/login';
+        }
+
         firebase.auth().onAuthStateChanged(function(user) {
             if (!user) {
-                window.location.href = '/login';
+                redirectToLoginPage()
+            } else {
+                if (Number(user.phoneNumber) !== Number("{{session('user_phone')}}")) {
+                    redirectToLoginPage()
+                }
             }
         });
 
@@ -62,7 +70,6 @@
                                             <option value="{{$province->id}}">{{$province->name}}</option>
                                         @endforeach
                                     </select>
-                                    <!--input class="input--style-5" type="text" id="province" name="province" placeholder="(Ex. Sofala)"-->
                                 </div>
                             </div>
                         </div>
@@ -76,7 +83,6 @@
                                             <option value="{{$district->id}}">{{$district->name}}</option>
                                         @endforeach
                                     </select>
-                                    <!-- input class="input--style-5" type="text" id="district" name="district" placeholder="(Ex. Beira)"-->
                                 </div>
                             </div>
                         </div>

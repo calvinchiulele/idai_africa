@@ -14,16 +14,27 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function get_current_user_or_redirect(Request $request) {
+        if (!$request->session()->has('user_phone')) {
+            return redirect()->route('login');
+        }
+        $user_phone = session('user_phone');
+        $user = User::where('phonenumber', $user_phone)->first();
+        if (is_null($user)) {
+            return redirect()->route('login');
+        } else {
+            return $user;
+        }
+    }
 
-    public function showFirstStep()
+    public function showFirstStep(Request $request)
     {
         $provinces = Province::all();
         $districts = District::all();
-        $user_phone = session('user_phone');
-        if (is_null($user_phone)) {
+        $user = $this->get_current_user_or_redirect($request);
+        if (!isset($user->volunteer)) {
             return redirect()->route('login');
         }
-        $user = User::where('phonenumber', $user_phone)->first();
 
         return view('volunteers.register-step-one')->with('provinces', $provinces)
             ->with('districts', $districts)
@@ -32,17 +43,21 @@ class UserController extends Controller
 
     public function showSecondStep(Request $request)
     {
-        $volunteerid = $request->input('volunteerid');
+        $user = $this->get_current_user_or_redirect($request);
+        if (!isset($user->volunteer)) {
+            return redirect()->route('login');
+        }
+
         $categories = Category::all();
         $assets = Asset::all();
 
-        $volunteer = Volunteer::find($volunteerid);
+        $volunteer = $user->volunteer;
 
         $selected_categories = $volunteer->categories->pluck('id')->toArray();
         $selected_assets = $volunteer->assets->pluck('id')->toArray();
 
         return view('volunteers.register-step-two')
-            ->with('volunteerid', $volunteerid)
+            ->with('volunteerid', $volunteer->id)
             ->with('categories', $categories)
             ->with('assets', $assets)
             ->with('volunteer_categories', $selected_categories)
@@ -84,8 +99,7 @@ class UserController extends Controller
             $volunteer->save();
         }
 
-        return redirect()->route('registration-step2', ['volunteerid' => $volunteer->id]);
-        // return redirect(route('registration-step2'))->with('phonenumber', $phone);
+        return redirect()->route('registration-step2');
     }
 
     public function saveSecondStep(Request $request)
@@ -193,13 +207,15 @@ class UserController extends Controller
                 }
             }
         }
-
-        return redirect()->guest(route('profile', ['volunteer_id' => $volunteer_id]));
+        return redirect()->guest(route('profile'));
     }
 
     public function profile(Request $request) {
-        $volunteer_id = $request->input('volunteer_id');
-        $volunteer = Volunteer::find($volunteer_id);
+        $user = $this->get_current_user_or_redirect($request);
+        if (!isset($user->volunteer)) {
+            return redirect()->route('login');
+        }
+        $volunteer = $user->volunteer;
         if (!is_null($volunteer)) {
             return view('volunteers.profile')
                 ->with('volunteer', $volunteer);
