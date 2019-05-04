@@ -19,8 +19,15 @@ class UserController extends Controller
     {
         $provinces = Province::all();
         $districts = District::all();
+        $user_phone = session('user_phone');
+        if (is_null($user_phone)) {
+            return redirect()->route('login');
+        }
+        $user = User::where('phonenumber', $user_phone)->first();
+
         return view('volunteers.register-step-one')->with('provinces', $provinces)
-            ->with('districts', $districts);
+            ->with('districts', $districts)
+            ->with('user', $user);
     }
 
     public function showSecondStep(Request $request)
@@ -199,5 +206,11 @@ class UserController extends Controller
         }
         return view('volunteers.profile')
             ->with('volunteer', $volunteer);
+    }
+
+    public function save_session(Request $request) {
+        $phone = $request->input('_user_phone');
+        session(['user_phone' => $phone]);
+        return redirect()->route('registration-step1');
     }
 }

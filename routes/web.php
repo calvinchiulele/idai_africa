@@ -32,3 +32,5 @@ Route::post('/savestep2', 'UserController@saveSecondStep')->name('savestep2');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/_save_session', 'UserController@save_session')->name('saveSession');

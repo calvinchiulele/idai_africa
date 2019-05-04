@@ -9,10 +9,7 @@
     <script src="{{'js/firebase-init.js'}}"></script>
     <script>
         firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                var phone = user.phoneNumber.substring(1);
-                document.getElementById('phonenumber').value = phone;
-            } else {
+            if (!user) {
                 window.location.href = '/login';
             }
         });
@@ -42,7 +39,7 @@
                             <div class="name">Nome Completo</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="name" id="name" placeholder="(Ex. Paulo Ferreira)">
+                                    <input class="input--style-5" type="text" name="name" id="name" placeholder="(Ex. Paulo Ferreira)" value="{{$user->name}}">
                                 </div>
                             </div>
                         </div>
@@ -51,7 +48,7 @@
                             <div class="name">Telemóvel</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="number" id="phonenumber" name="phonenumber" placeholder="(Ex. +258 84 123 4567)">
+                                    <input class="input--style-5" type="number" id="phonenumber" name="phonenumber" placeholder="(Ex. +258 84 123 4567)" value="{{$user->phonenumber}}">
                                 </div>
                             </div>
                         </div>
