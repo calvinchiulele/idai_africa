@@ -46,18 +46,17 @@
 
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li><a href="#">INSTITUIÇAO</a></li>
                     <!-- Dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             VOLUNTÁRIO
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/register">Criar conta</a>
-                            <a class="dropdown-item" href="/login">Entrar</a>
+                            <a class="dropdown-item" href="/login">Voluntariar-me</a>
+                            <a class="dropdown-item" href="/login">Meu Registro</a>
                         </div>
                     </li>
-                    <li><a href="/volunteers-list">PESSOAS</a></li>
+                    <li><a href="/login">Organizações</a></li>
                 </ul>
             </div>
         </div>

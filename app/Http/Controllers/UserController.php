@@ -227,6 +227,15 @@ class UserController extends Controller
     public function save_session(Request $request) {
         $phone = $request->input('_user_phone');
         session(['user_phone' => $phone]);
-        return redirect()->route('registration-step1');
+        $user = $this->get_current_user_or_redirect($request);
+        if (isset($user->organization)) {
+            return redirect()->route('volunteers.list');
+        } else {
+            if (isset($user->name)) {
+                return redirect()->route('profile');
+            } else {
+                return redirect()->route('registration-step1');
+            }
+        }
     }
 }
