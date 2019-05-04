@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
          factory(\App\Models\User::class, 150)->create();
          factory(\App\Models\Volunteer::class, 90)->create();
          factory(\App\Models\Organization::class, 30)->create();
+
+        $this->call(AssetsSeeder::class); //adicionando os assets
+        $this->call(VolunteersAssetsSeeder::class); //adicionando os assets
     }
 }

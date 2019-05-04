@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 class DataController extends Controller
 {
 
-
     public static function getProvinvias(){
         $jsonString = file_get_contents(base_path('resources/data/provinces.json'));
         $provincias = (json_decode($jsonString, true))['places'];

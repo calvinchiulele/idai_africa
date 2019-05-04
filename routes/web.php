@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 Route::get('/profile', 'UserController@profile')->name('profile');
 
-Route::get('/volunteers-list', function () {
-    return view('volunteers.list');
-});
+Route::get('/volunteers-list', 'VolunteerController@index')->name('volunteers.list');
+Route::get('/volunteers-list/{district}/{asset}/{category}', 'VolunteerController@filterVolunteers')->name('volunteers.filter');
+
 
 Route::get('/registration-step1', 'UserController@showFirstStep')->name('registration-step1');
 
