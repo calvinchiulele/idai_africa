@@ -70,6 +70,25 @@
         }
     </style>
 
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-auth.js"></script>
+    <script src="{{'js/firebase-init.js'}}"></script>
+    <script>
+        function redirectToLoginPage() {
+            window.location.href = '/login';
+        }
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                redirectToLoginPage()
+            } else {
+                if (Number(user.phoneNumber) !== Number("{{session('user_phone')}}")) {
+                    redirectToLoginPage()
+                }
+            }
+        });
+    </script>
+
 @endsection
 
 @section('content')

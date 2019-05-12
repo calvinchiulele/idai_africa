@@ -40,6 +40,15 @@
             <a class="navbar-brand" href="/">
                 <h1>IDAI Africa</h1>
             </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li><a href="#" onclick="firebase.auth().signOut()">Sair (logout)</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 </header>
