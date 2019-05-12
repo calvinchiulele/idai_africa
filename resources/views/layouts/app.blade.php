@@ -21,12 +21,12 @@
     <!--
     CSS
     ============================================= -->
-    <link rel="stylesheet" href="{{asset('css/linearicons.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/linearicons.css')}}">
     <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
     <!-- <link rel="stylesheet" href="css/jquery.DonutWidget.min.css"> -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/bootstrap.css')}}">
     <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
-    <link rel="stylesheet" href="{{'css/main.css'}}">
+    <link rel="stylesheet" href="{{'/css/main.css'}}">
     {{--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">--}}
     @yield('additional-styles')
 

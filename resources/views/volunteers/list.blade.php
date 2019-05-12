@@ -2,7 +2,7 @@
 
 @section('additional-styles')
 
-    <link rel="stylesheet" href="{{'css/register/main.css'}}">
+    <link rel="stylesheet" href="{{'/css/register/main.css'}}">
 
     <style>
 
@@ -60,6 +60,11 @@
         }
 
         .actividade:hover{
+            background-color: #3768CD;
+            color: white;
+        }
+
+        .is-active {
             background-color: #3768CD;
             color: white;
         }
