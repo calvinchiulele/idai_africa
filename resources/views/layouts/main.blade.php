@@ -21,12 +21,12 @@
     <!--
     CSS
     ============================================= -->
-    <link rel="stylesheet" href="{{asset('/css/linearicons.css')}}">
+    <link rel="stylesheet" href="{{asset('css/linearicons.css')}}">
     <!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
     <!-- <link rel="stylesheet" href="css/jquery.DonutWidget.min.css"> -->
-    <link rel="stylesheet" href="{{asset('/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <!-- <link rel="stylesheet" href="css/owl.carousel.css"> -->
-    <link rel="stylesheet" href="{{'/css/main.css'}}">
+    <link rel="stylesheet" href="{{'css/main.css'}}">
     {{--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">--}}
     @yield('additional-styles')
 
@@ -46,7 +46,17 @@
 
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li><a href="#" onclick="firebase.auth().signOut()">Sair (logout)</a></li>
+                    <!-- Dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            VOLUNTÁRIO
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/login">Voluntariar-me</a>
+                            <a class="dropdown-item" href="/login">Meu Registro</a>
+                        </div>
+                    </li>
+                    <li><a href="/login">Organizações</a></li>
                 </ul>
             </div>
         </div>

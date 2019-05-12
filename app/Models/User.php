@@ -33,12 +33,12 @@ class User extends Eloquent
 		'phonenumber'
 	];
 
-	public function organizations()
+	public function organization()
 	{
 		return $this->hasOne(\App\Models\Organization::class, 'users_id');
 	}
 
-	public function volunteers()
+	public function volunteer()
 	{
 		return $this->hasOne(\App\Models\Volunteer::class, 'users_id');
 	}

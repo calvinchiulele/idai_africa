@@ -30,27 +30,7 @@
                             <div class="name">Cell</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="phone" name="phone" placeholder="phone">
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-row">
-                            <div class="name">Password</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="password" name="password" placeholder="password">
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-row">
-                            <div class="name">Password</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="password" name="password" placeholder="re-type password">
+                                    <input class="input--style-5" type="phone" id="phone" name="phone" placeholder="phone">
                                 </div>
                             </div>
                         </div>
